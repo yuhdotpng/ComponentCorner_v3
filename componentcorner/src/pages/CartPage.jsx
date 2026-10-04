@@ -1,6 +1,7 @@
 import CartItem from "../assets/components/CartItem";
 
-function CartPage (cart, removeFromCart) {
+function CartPage ({cart, removeFromCart}) {
+  const cartTotal = cart.reduce((total, product) => total + product.price , 0)
     return(
         <div className="CartPage">
             {cart.length > 0 ? (
