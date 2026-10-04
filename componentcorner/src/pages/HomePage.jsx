@@ -1,4 +1,5 @@
 import Hero from "./../assets/components/Hero"
+import './HomePage.css'
 
 function HomePage() {
     return(
@@ -10,10 +11,12 @@ function HomePage() {
                 subtitle= 'Discover amazing products built with React components'
                 callToAction='Shop Now'
             />
-            <h2>Why Shop with Us?</h2>
-            <p>Component Corner is a great online shopping service focused not only on delivering you great products but creating an 
+            <div className='intro'>
+                <h2>Why Shop with Us?</h2>
+                <p>Component Corner is a great online shopping service focused not only on delivering you great products but creating an 
                 immersive and fun website rendered using all sorts of fun React tricks!!
-            </p>
+                </p>
+            </div>
       </div>
     )
     }
