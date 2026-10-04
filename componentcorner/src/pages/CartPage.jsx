@@ -23,7 +23,7 @@ function CartPage ({cart, removeFromCart}) {
      
 
     {cartTotal > 0 && (
-      <p>Total: {cartTotal}</p>
+      <p>Total: {cartTotal.toFixed(2)}</p>
     )}
 
         </div>
