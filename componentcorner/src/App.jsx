@@ -4,12 +4,27 @@ import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import Footer from './assets/components/Footer';
-import {useState} from 'react';
+import {useEffect , useState} from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
 
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(() => {
+    const savedItems = localStorage.getItem('cart');
+    return savedItems ? JSON.parse(savedItems) :(
+      <div className='empty-cart'> 
+          <h2> Your cart is empty! </h2>
+        </div>
+    ) ;
+  });
+
+  useEffect(() => { 
+    try { 
+      localStorage.setItem("cart", JSON.stringify(cart)); } 
+    catch { 
+      console.warn('Could not save cart to localStorage:', error); }
+    },
+  [cart]);
 
   function addToCart(product) {
     setCart(previousCart => [...previousCart, product]);
@@ -22,7 +37,6 @@ function App() {
    );
   };
 
-  const cartTotal = cart.reduce((total, product) => total + product.price , 0)
 
   const products = [
   { 
@@ -73,9 +87,7 @@ function App() {
     <div className="app">
       <Header
       name = 'ComponentCorner'
-      page1= 'Home'
-      page2= 'Contact'
-      page3= 'About' 
+      page1= 'Products' 
       cart_count={cart.length}
       />
       <Routes>
