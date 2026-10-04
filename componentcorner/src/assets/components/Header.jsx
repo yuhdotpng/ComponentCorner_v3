@@ -1,17 +1,24 @@
 import './Header.css'
-
-function Header({name, page1, page2, page3, cart_count}) {
+import {Link} from 'react-router-dom'
+function Header({name, page1, cart_count}) {
     return (
         <div className="header">
+            <Link to={`/`}>
             <a href="#default"><h2>{name}</h2></a>
+            </Link>
             <div className="header-right">
-                <a className="active" href="#home">{page1}</a>
-                <a href="#contact">{page2}</a>
-                <a href="#about">{page3}</a>
+                <Link to = '/products'>
+                <a className="active">{page1}</a>
+                </Link>
+                <Link to = '/cart'>
+                <a>Cart</a>
+                </Link>
                 {cart_count > 0 && (
                 <div className="cart-container"> 
+                    <Link to = '/cart'>
                     <span className="cart-icon">🛒</span> 
                     <span className="cart-badge">{cart_count}</span>
+                    </Link>
                 </div>
                ) }       
             </div>
